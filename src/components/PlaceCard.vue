@@ -1,0 +1,41 @@
+<template>
+    <div class="place-card">
+      <h2>{{ place._name }}</h2>
+      <p>{{ place._description }}</p>
+      <p>{{ place._street }}, {{ place._city }}, {{ place._country }}</p>
+      <div id="mapid" style="height: 400px;"></div>
+    </div>
+  </template>
+  
+  <script>
+  import L from 'leaflet';
+  
+  export default {
+    name:'PlaceCard',
+    props: ['place'],
+    mounted() {
+      const map = L.map(this.$el.querySelector('#mapid')).setView([this.place._latitud, this.place._longitud], 13);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+        maxZoom: 18,
+      }).addTo(map);
+  
+      L.marker([this.place._latitud, this.place._longitud]).addTo(map);
+    },
+  };
+</script>
+  
+<style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+  .place-card {
+    font-family: 'Lobster', cursive;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    padding: 10px;
+    margin: 10px;
+    background-color: orange;
+  }
+</style>

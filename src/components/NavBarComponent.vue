@@ -2,10 +2,10 @@
     <nav class="navbar">
       <ul class="navbar-links">
         <li><router-link to='/' class='navbar-button'>Home</router-link></li>
+        <li><router-link to='/documents' class='navbar-button'>Documents</router-link></li>
         <li><router-link to="/map" class="navbar-button">Map</router-link></li>
-        <li><button class="navbar-button">Documents</button></li>
-        <li><button class="navbar-button">Places</button></li>
-        <li><button class="navbar-button">People</button></li>
+        <li><router-link to='/places' class="navbar-button">Places</router-link></li>
+        <li><router-link to='/people' class='navbar-button'>People</router-link></li>
         <li><button class="navbar-button">Timelines</button></li>
       </ul>
       <button class="navbar-button login">Login</button>
