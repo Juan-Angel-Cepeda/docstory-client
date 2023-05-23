@@ -2,7 +2,7 @@
     <div class="people-container">
       <PersonCard v-for="person in people" :key="person._id" :person="person" />
     </div>
-  </template>
+</template>
   
 <script>
   import axios from 'axios';
