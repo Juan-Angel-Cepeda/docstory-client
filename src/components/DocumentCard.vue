@@ -1,4 +1,5 @@
 <template>
+  <router-link :to = "`/document/${document._id}`">
   <div class="document-card">
     <div class="document-info">
       <h2>{{ document._title }}</h2>
@@ -9,6 +10,7 @@
       <img v-if="document._photos && document._photos.length > 0" :src="document._photos[0]" alt="Document photo">
     </div>
   </div>
+  </router-link>
 </template>
 
 <script>
