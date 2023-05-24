@@ -1,27 +1,58 @@
 <template>
-    <div class="document-card">
+  <div class="document-card">
+    <div class="document-info">
       <h2>{{ document._title }}</h2>
       <p>Date: {{ formatDate(document._date) }}</p>
       <p>Description: {{ document._description }}</p>
-      <p>Colection: {{ document._colection }}</p>
-
-      <!-- Agrega más campos según sea necesario -->
     </div>
+    <div class="document-image">
+      <img v-if="document._photos && document._photos.length > 0" :src="document._photos[0]" alt="Document photo">
+    </div>
+  </div>
 </template>
-  
+
 <script>
-  export default {
-    props: {
-      document: Object,
+export default {
+  props: {
+    document: Object,
+  },
+  methods: {
+    formatDate(date) {
+      return new Date(date).toLocaleDateString();
     },
-    methods: {
-      formatDate(date) {
-        return new Date(date).toLocaleDateString();
-      },
-    },
-  };
+  },
+};
 </script>
-  
+
 <style scoped>
-  /* Estilos de tu elección */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+.document-card {
+  width: 300px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  padding: 10px;
+  margin: 10px;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.document-info {
+  font-family: 'Lobster', cursive;
+}
+
+.document-image {
+  height: 200px;
+  width: 100%;
+}
+
+.document-image img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
 </style>
