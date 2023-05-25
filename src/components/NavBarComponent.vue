@@ -6,9 +6,10 @@
         <li><router-link to="/map" class="navbar-button">Map</router-link></li>
         <li><router-link to='/places' class="navbar-button">Places</router-link></li>
         <li><router-link to='/people' class='navbar-button'>People</router-link></li>
-        <li><button class="navbar-button">Timelines</button></li>
+        <li><router-link to='/timelines' class='navbar-button'>Time Lines</router-link></li>
+        
       </ul>
-      <button class="navbar-button login">Login</button>
+      <li><router-link to='/login' class='navbar-button'>Log In</router-link></li>
     </nav>
   </template>
   
@@ -27,7 +28,7 @@
   justify-content: space-between;
   background-color: black;
   color: #dd5100; /* Color del texto */
-  padding: 10px;
+  padding: 35px;
   width: 100%;
   }
   
