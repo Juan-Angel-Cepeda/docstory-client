@@ -1,4 +1,5 @@
 <template>
+  <div class="body">
     <form class="form" @submit.prevent="login">
       <p class="form-title">Sign in to your account</p>
       <div class="input-container">
@@ -12,6 +13,7 @@
         Sign in
       </button>
     </form>
+  </div>
 </template>
 
 <script>
@@ -21,7 +23,7 @@
    data(){
     return {
         email:"",
-        passsword:"",
+        password:"",
         msg:null
     };
    },
@@ -29,7 +31,7 @@
     login(){
         axios.post('http://localhost:3000/login',{
             email:this.email,
-            password:this.passsword
+            password:this.password
         }).then(res => {
             console.log(res);
             this.$router.push('/adminPanel');
@@ -43,6 +45,15 @@
 </script>
 
 <style scoped>
+
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f9fafb;
+}
 .form {
   background-color: white;
   display: block;
@@ -50,6 +61,7 @@
   max-width: 350px;
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  max-width: auto;
 }
 
 .form-title {
