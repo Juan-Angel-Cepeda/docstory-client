@@ -1,4 +1,5 @@
 <template>
+
     <div v-if="document && document.obj" class="card-container">
       <div class="card text-card">
         <h1 class="title card-title">{{ document.obj._title }}</h1>
@@ -22,29 +23,34 @@
             </ul>
           </div>
         </div>
-      </div>
-  
-      <div class="card carousel-card">
+    </div>
+    <div class="card carousel-card">
         <img :src="document.obj._photos[currentPhotoIndex]" alt="Document photo" class="card-img-top">
         <button @click="prevPhoto">Previous</button>
         <button @click="nextPhoto">Next</button>
-      </div>
     </div>
-  
+    <div class="card map-card">
+        <div id="leaflet-map" style="height:400px;"></div>
+    </div>
+    </div>
     <div v-else>
       <h1>Loading...</h1>
     </div>
-  </template>
+
+
+</template>
   
   <script>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted, onBeforeUnmount, nextTick} from 'vue';
   import { getDocumentById } from '../services/apiService';
+  import L from 'leaflet';
   
   export default {
     props: ['id'],
     setup(props) {
       const document = ref(null);
       const currentPhotoIndex = ref(0);
+      let mapInstance = null;
   
       const formatDate = (dateString) => {
         const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
@@ -62,7 +68,31 @@
         }
       }
   
-      onMounted(fetchDocument);
+      onMounted(async ()=>{
+        await fetchDocument();
+        await nextTick();
+
+        if(document.value.obj._place) {
+            mapInstance = L.map('leaflet-map').setView([
+            document.value.obj._place._latitud,
+            document.value.obj._place._longitud
+            ],13);
+    
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+            maxZoom: 18,
+        }).addTo(mapInstance);
+        L.marker([document.value.obj._place._latitud, document.value.obj._place._longitud]).addTo(mapInstance);
+    } else {
+        console.error("Document does not have _place defined");
+    }
+    });
+
+    onBeforeUnmount(() => {
+      if (mapInstance) {
+        mapInstance.remove();
+      }
+        });
   
       const nextPhoto = () => {
         if (currentPhotoIndex.value < document.value.obj._photos.length - 1) {
@@ -120,12 +150,23 @@
   }
 
   .text-card {
-    flex-basis: 50%; /* Esto hará que la tarjeta ocupe la mitad del espacio disponible */
-    margin-right: 10px; /* Añade un poco de espacio entre las tarjetas */
+    flex-basis: 40%; /* Esto hará que la tarjeta ocupe la mitad del espacio disponible */
+    margin-right: 30px; /* Añade un poco de espacio entre las tarjetas */
   }
 
   .carousel-card {
-    flex-basis: 50%; /* Esto hará que la tarjeta ocupe la mitad del espacio disponible */
+    flex-basis: 40%; /* Esto hará que la tarjeta ocupe la mitad del espacio disponible */
+  }
+
+  .map-card {
+    /* Estilos de la tarjeta del mapa. Por ejemplo: */
+    height: 400px;
+  }
+
+  #leaflet-map {
+    /* Estilos del mapa. Por ejemplo: */
+    height: 100%;
+    width: 100%;
   }
 
 </style>
