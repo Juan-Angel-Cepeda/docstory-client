@@ -3,7 +3,7 @@
     <div v-if="document && document.obj" class="card-container">
       <div class="container">
         <div class="container-title">
-          <h1>{{ document.obj._title }}</h1>
+          <h1 class="custom-title">{{ document.obj._title }}</h1>
         </div>
         <div class="d-flex flex-row justify-content-center">
           <div>
@@ -23,7 +23,7 @@
             <p class="fw-bold fs-4">Context: <span class="fw-normal fs-5">{{ document.obj._context }}</span></p>
             <p class="fw-bold fs-4">Collection: <span class="fw-normal fs-5">{{ document.obj._colection }}</span></p>
             <p class="fw-bold fs-4">Location: <span class="fw-normal fs-5">{{ document.obj._ubi }}</span></p>
-            <p class="fw-bold fs-4">Date: <span class="fw-normal fs-5">{{ document.obj._date }}</span></p>
+            <p class="fw-bold fs-4">Date: <span class="fw-normal fs-5">{{ formatDate(document.obj._date) }}</span></p>
           </div>
 
         </div>
@@ -34,40 +34,6 @@
           </div>
         </div>
       </div>
-      <!--<div class="card text-card">
-        <h1 class="title card-title">{{ document.obj._title }}</h1>
-  
-        <div class="card-body">
-          <div class="container">
-            <div class="text">
-              <p class="card-text">{{ document.obj._description }}</p>
-              <p>Format: {{ document.obj._format }}</p>
-              <p>Author: {{ document.obj._author }}</p>
-              <p>Sender: {{ document.obj._sender._name }} {{ document.obj._sender._lastName }}</p>
-              <p>Reciver: {{ document.obj._reciver._name }} {{ document.obj._reciver._lastName }}</p>
-              <p>Context: {{ document.obj._context }}</p>
-              <p>Collection: {{ document.obj._colection }}</p>
-              <p>Location: {{ document.obj._ubi }}</p>
-              <p>Date: {{ formatDate(document.obj._date) }}</p>
-            </div>
-          </div>
-          <div v-if="document.obj._relations.length">
-            <p>Relations:</p>
-            <ul>
-              <li v-for="(relation, index) in document.obj._relations" :key="index">{{ relation._title}}</li>
-            </ul>
-          </div>
-        </div>
-        <div class="card carousel-card">
-          <img :src="document.obj._photos[currentPhotoIndex]" alt="Document photo" class="card-img-top">
-          <button @click="prevPhoto">Previous</button>
-          <button @click="nextPhoto">Next</button>
-          <div class="card map-card">
-            <div id="leaflet-map" style="height:400px;"></div>
-          </div>
-        </div>
-      </div>
-      -->
     </div>
       <div v-else>
         <h1>Loading...</h1>
@@ -85,16 +51,16 @@
     setup(props) {
         const document = ref(null);
         const currentPhotoIndex = ref(0);
+        const dateFormat = ref(null);
         let mapInstance = null;
-        const formatDate = (dateString) => {
-            const options = { year: "numeric", month: "numeric", day: "numeric" };
-            return new Date(dateString).toLocaleDateString(undefined, options);
-        };
         const fetchDocument = async () => {
             console.log("Fetching document...");
             try {
                 document.value = await getDocumentById(props.id);
-                console.log("Fetched document:", document.value);
+                let tempDate = new Date(document.value.obj._date);
+                dateFormat.value = `${tempDate.getDate() < 10 ? '0' : ''}${tempDate.getDate()}-${tempDate.getMonth()+1 < 10 ? '0' : ''}${tempDate.getMonth()+1}-${tempDate.getFullYear()}`
+                console.log(dateFormat);
+                console.log("Fetched document:", document.value.obj._date);
             }
             catch (error) {
                 console.error("Failed to fetch document:", error);
@@ -146,9 +112,15 @@
                 currentPhotoIndex.value = document.value.obj._photos.length - 1;
             }
         };
-        return { document, formatDate, currentPhotoIndex, nextPhoto, prevPhoto };
+        return { document, currentPhotoIndex, nextPhoto, prevPhoto };
     },
-    components: { NavBarComponent }
+    components: { NavBarComponent },
+    methods:{
+      formatDate(dateString){
+            const options = { year: "numeric", month: "numeric", day: "numeric" };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+      }
+    }
 }
   </script>
 
@@ -177,6 +149,11 @@
     background-color: transparent;
     border: none;
     font-size: 25px;
+    transition: 0.5s;
+  }
+
+  .container-btns-carousel button:hover{
+    transform: scale(2);
   }
 
   .text {
@@ -217,6 +194,10 @@
   .map-card {
     /* Estilos de la tarjeta del mapa. Por ejemplo: */
     height: 400px;
+  }
+  
+  .custom-title{
+    font-family: 'Helvetica',Arial, Helvetica, sans-serif;
   }
 
   #leaflet-map {

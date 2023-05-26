@@ -68,7 +68,8 @@
 <script>
   import axios from 'axios';
   import AdminNavbar from './AdminNavbar.vue';
-  
+  import Swal from 'sweetalert2';
+
   export default {
     components:{
     AdminNavbar
@@ -95,6 +96,11 @@
       createPlace() {
         axios.post('https://docstory-jangelcepeda.b4a.run/admin/places', this.place)
           .then(response => {
+            Swal.fire({
+              tittle: 'Creado',
+              text: 'El lugar se ha creado',
+              icon: 'success'
+            });
             console.log(response);
             // puedes agregar aquí cualquier acción adicional, como redirigir al usuario o mostrar un mensaje de éxito
           })
@@ -106,7 +112,20 @@
       deletePlace(){
         axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/places/${this.selectedPlace}`)
              .then(response => {
-                console.log(response)
+                console.log(response);
+                  Swal.fire({
+                  icon: 'info',
+                  title: '¿Seguro que quieres eliminar este lugar?',
+                  text: 'Esta acción no se puede deshacer',
+                  showCancelButton: true,
+                  confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire('Eliminado!', '', 'success')
+                  } 
+                })
+
              }).catch(err => {
                 console.log(err)
              })

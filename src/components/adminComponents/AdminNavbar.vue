@@ -2,9 +2,12 @@
     <nav class="navbar">
       <ul class="navbar-links">
         <li><router-link to='/' class='navbar-button'>Home</router-link></li>
-        <li><router-link to='/admin/documents' class='navbar-button'>Documents</router-link></li>
-        <li><router-link to='/admin/places' class="navbar-button">Places</router-link></li>
-        <li><router-link to='/admin/people' class='navbar-button'>People</router-link></li>
+        <li><router-link to='/admin/documents' class='navbar-button'>Admin Documents</router-link></li>
+        <li><router-link to='/admin/places' class="navbar-button">Admin Places</router-link></li>
+        <li><router-link to='/admin/people' class='navbar-button'>Admin People</router-link></li>
+        <li><router-link to='/documents' class='navbar-button'>See Documents</router-link></li>
+        <li><router-link to='/places' class='navbar-button'>See Places</router-link></li>
+        <li><router-link to='/people' class='navbar-button'>See People</router-link></li>
       </ul>
     </nav>
   </template>

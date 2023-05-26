@@ -111,6 +111,7 @@
   <script>
     import AdminNavbar from './AdminNavbar.vue';
     import axios from 'axios';
+    import Swal from 'sweetalert2';
     export default {
     data() {
         return {
@@ -140,6 +141,11 @@
         async createDocument() {
             axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document)
                 .then(response => {
+                Swal.fire({
+                  title: 'Creado',
+                  text: 'El documento se ha creado',
+                  icon: 'success'
+                });
                 console.log(response);
             })
                 .catch(error => {
@@ -152,7 +158,19 @@
         deleteDocument(){
         axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/documents/${this.selectedDocument}`)
              .then(response => {
-                console.log(response)
+                console.log(response);
+                Swal.fire({
+                  icon: 'info',
+                  title: '¿Seguro que quieres eliminar este documento?',
+                  text: 'Esta acción no se puede deshacer',
+                  showCancelButton: true,
+                  confirmButtonText: 'Eliminar'
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire('Eliminado!', '', 'success')
+                  } 
+                })
              }).catch(err => {
                 console.log(err)
              })
