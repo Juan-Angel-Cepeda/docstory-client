@@ -90,6 +90,21 @@
           <button type="submit" class="btn btn-primary">Create Document</button>
         </div>
       </form>
+      <h2>Delete a Document</h2>
+      <form @submit.prevent="deleteDocument" class="row g-3">
+        <div class="col-6">
+          <label class="form-label">Select Document</label>
+          <select v-model="selectedDocument" class="form-control" required>
+            <option disabled value="">Please select one</option>
+            <option v-for="document in documents" :key="document._id" :value="document._id">
+              {{document._title}}
+            </option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-danger">Delete Document</button>
+        </div>
+      </form>
     </div>
   </template>
   
@@ -117,7 +132,8 @@
             places: [],
             authors: [],
             people: [],
-            documents: []
+            documents: [],
+            selectedDocument:""
         };
     },
     methods: {
@@ -132,7 +148,15 @@
         },
         addPhotoField() {
             this.document.photos.push("");
-        }
+        },
+        deleteDocument(){
+        axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/documents/${this.selectedDocument}`)
+             .then(response => {
+                console.log(response)
+             }).catch(err => {
+                console.log(err)
+             })
+      }
     },
     created() {
         axios.get("https://docstory-jangelcepeda.b4a.run/places")
