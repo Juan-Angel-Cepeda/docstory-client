@@ -47,6 +47,22 @@
           <button type="submit" class="btn btn-primary">Create Place</button>
         </div>
       </form>
+      <h2>Delete a place</h2>
+      <form @submit.prevent="deletePlace" class="row g-3">
+       <div class="col-6">
+         <label class="form-label">Select Place</label>
+         <select v-model="selectedPlace" class="form-control" required>
+           <option disabled value="">Please select one</option>
+           <option v-for="place in places" :key="place._id" :value="place._id">
+             {{ place._name }}
+           </option>
+         </select>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-danger">Delete Place</button>
+      </div>
+    </form>
+      
     </div>
   </template>
 <script>
@@ -70,7 +86,9 @@
           zip: '',
           latitud: '',
           longitud: ''
-        }
+        },
+        places: [],
+        selectedPlace: ''
       };
     },
     methods: {
@@ -84,8 +102,24 @@
             console.log(error);
             // puedes agregar aquí cualquier acción adicional, como mostrar un mensaje de error
           });
+      },
+      deletePlace(){
+        axios.delete(`http://localhost:3000/admin/places/${this.selectedPlace}`)
+             .then(response => {
+                console.log(response)
+             }).catch(err => {
+                console.log(err)
+             })
+      },
+    },
+    created(){
+        axios.get('http://localhost:3000/places')
+             .then(response => {
+                this.places = response.data.obj;
+             }).catch(err => {
+                console.log(err);
+             })
       }
-    }
   };
 </script>
 <style scoped>

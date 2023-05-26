@@ -18,7 +18,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 
 .sidebar {
-  display: flex;
+  display: flex-start;
   flex-direction: column;
   justify-content: start;
   align-items: start;
