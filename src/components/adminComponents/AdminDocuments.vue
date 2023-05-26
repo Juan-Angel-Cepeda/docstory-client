@@ -1,4 +1,5 @@
 <template>
+    <AdminSidebar></AdminSidebar>
     <div class="container mt-5">
       <h2>Create a new Document</h2>
       <form @submit.prevent="createDocument" class="row g-3">
@@ -71,9 +72,16 @@
           <label class="form-label">Where is the document</label>
           <input v-model="document.ubi" type="text" class="form-control" placeholder="ubi" required>
         </div>
+        
+        <div class="col-6" v-for="(photo, index) in document.photos" :key="index">
+          <label class="form-label">Link to the Photo</label>
+          <input v-model="document.photos" type="text" class="form-control" placeholder="Link to the Photos" required>
+        </div>
+        
         <div class="col-12">
           <label class="form-label">Context</label>
-          <textarea v-model="document.context" class="form-control" placeholder="Context" required></textarea>
+          <input v-model="document.photos[index]" type="text" class="form-control" placeholder="Link to the Photos" required>
+          <button type="button" @click="addPhotoField">Add another photo</button>
         </div>
         <div class="col-6">
           <label class="form-label">Relations With Other Documents</label>
@@ -92,65 +100,69 @@
   </template>
   
   <script>
+    import AdminSidebar from './AdminSidebar.vue';
     import axios from 'axios';
     //import AdminSidbar from './AdminSidebar.vue'
-  export default {
+    export default {
     data() {
-      return {
-        document: {
-          title: '',
-          date: '',
-          description: '',
-          format: '',
-          placeId: '',
-          authorId: '',
-          senderId: '',
-          reciverId: '',
-          context: '',
-          photos: [],
-          colection: '',
-          ubi: '',
-          relations: []
-        },
-        places: [],
-        authors: [],
-        people: [],
-        documents: [] 
-      }
+        return {
+            document: {
+                title: "",
+                date: "",
+                description: "",
+                format: "",
+                placeId: "",
+                authorId: "",
+                senderId: "",
+                reciverId: "",
+                context: "",
+                photos: [""],
+                colection: "",
+                ubi: "",
+                relations: []
+            },
+            places: [],
+            authors: [],
+            people: [],
+            documents: []
+        };
     },
     methods: {
-      async createDocument() {
-        axios.post('http://localhost:3000/admin/documents',this.document)
-        .then(response => {
-            console.log(response);
-          })
-          .catch(error => {
-            console.log(error);
-          });
-      }
+        async createDocument() {
+            axios.post("http://localhost:3000/admin/documents", this.document)
+                .then(response => {
+                console.log(response);
+            })
+                .catch(error => {
+                console.log(error);
+            });
+        },
+        addPhotoField() {
+            this.document.photos.push("");
+        }
     },
-    created(){
-      axios.get('http://localhost:3000/places')
+    created() {
+        axios.get("http://localhost:3000/places")
             .then(response => {
-              this.places = response.data.obj;
-            }).catch(err => {
-              console.log(err);
-            });
-
-      axios.get('http://localhost:3000/people')
+            this.places = response.data.obj;
+        }).catch(err => {
+            console.log(err);
+        });
+        axios.get("http://localhost:3000/people")
             .then(response => {
-              this.people = response.data.obj;
-            }).catch(err => {
-              console.log(err);
-            });
-      axios.get('http://localhost:3000/documents')
+            this.people = response.data.obj;
+        }).catch(err => {
+            console.log(err);
+        });
+        axios.get("http://localhost:3000/documents")
             .then(response => {
-              this.documents = response.data.obj;
-            }).catch(err => {
-              console.log(err);
-            });
-    }
-  }
+            this.documents = response.data.obj;
+        }).catch(err => {
+            console.log(err);
+        });
+    },
+    components: { AdminSidebar }
+}
 </script>
 <style scoped>
 

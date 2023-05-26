@@ -17,31 +17,38 @@
         places:[]
       };
     },
-    async mounted(){
-        this.map = L.map('mapid').setView([51.505, -0.09], 2);
-        // Añadir la capa de tiles
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-        maxZoom: 18,
-        }).addTo(this.map);
-        let customIcon = L.icon({
-            iconUrl:`/images/ubicacion.png`,
-            iconSize: [30, 30], // Especifica el tamaño del ícono aquí. Los valores son [ancho, alto]
-            iconAnchor: [20, 90], // Especifica el punto de anclaje del ícono. Los valores son [izquierda, arriba]
-            popupAnchor: [-3, -76] 
-        })
-        try{
-            let response = await axios.get('http://localhost:3000/places');
-            let places = response.data.obj
-            if(this.map){
-              places.forEach(place => {
-                L.marker([place._latitud, place._longitud],{icon:customIcon}).addTo(this.map).bindPopup(place._name).openPopup();
-              });
-            } 
-        }catch(error){
-            console.log(error)
-        }
-    },
+    async mounted() {
+  this.map = L.map('mapid').setView([51.505, -0.09], 2);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 18,
+  }).addTo(this.map);
+
+  let customIcon = L.icon({
+    iconUrl:`/images/ubicacion.png`,
+    iconSize: [30, 30], 
+    iconAnchor: [20, 90],
+    popupAnchor: [-3, -76]
+  });
+
+  try {
+    let response = await axios.get('http://localhost:3000/places');
+    this.places = response.data.obj;
+  } catch (error) {
+    console.log(error);
+  }
+
+  // Move this code outside the try-catch block
+  if (this.map && this.places) {
+    this.places.forEach(place => {
+      L.marker([place._latitud, place._longitud], {icon:customIcon})
+        .addTo(this.map)
+        .bindPopup(place._name)
+        .openPopup();
+    });
+  } 
+},
     };
 </script>
   

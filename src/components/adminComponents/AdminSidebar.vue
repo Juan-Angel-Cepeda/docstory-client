@@ -1,7 +1,9 @@
 <template>
     <div class="sidebar">
       <ul>
-        <li><router-link to='/admin/documents' class='sidebar-button'>Documents</router-link></li>
+        <li>
+          <router-link to='/admin/documents' class='sidebar-button'>Documents</router-link>
+        </li>
         <li><router-link to='/admin/people' class='sidebar-button'>People</router-link></li>
         <li><router-link to='/admin/places' class="sidebar-button">Places</router-link></li>
       </ul>
@@ -24,12 +26,14 @@
   align-items: start;
   background-color: black;
   color: #dd5100; /* Color del texto */
-  padding: 10px;
   width: 15%; /* La barra lateral toma 1/5 del ancho de la página */
   height: 100vh; /* La barra lateral toma toda la altura de la página */
   position: fixed; /* La barra lateral se mantiene en su lugar al desplazarse */
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
+  
+}
+
+.sidebar li{
+  list-style: none;
 }
 
 .sidebar a {
@@ -53,7 +57,9 @@
   color: rgb(255, 255, 255); /* texto negro */
   cursor: pointer;
   padding: 10px 20px; /* esto determina el tamaño del botón, ajústalo a tu gusto */
-  border-radius: 15px; /* esto hace que el botón sea redondo, ajústalo a tu gusto */
+  
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
   margin: 10px 0; /* espacio arriba y abajo del botón */
   font-family: 'Lobster', cursive;
 }
