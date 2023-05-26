@@ -198,6 +198,12 @@
         }).catch(err => {
             console.log(err);
         });
+        axios.get("https://docstory-jangelcepeda.b4a.run/documents")
+            .then(response => {
+            this.documents = response.data.obj;
+        }).catch(err => {
+            console.log(err);
+        });
     },
     components: { AdminNavbar }
 }
