@@ -129,7 +129,7 @@
     },
     methods: {
         async createDocument() {
-            axios.post("http://localhost:3000/admin/documents", this.document)
+            axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document)
                 .then(response => {
                 console.log(response);
             })
@@ -142,19 +142,19 @@
         }
     },
     created() {
-        axios.get("http://localhost:3000/places")
+        axios.get("https://docstory-jangelcepeda.b4a.run/places")
             .then(response => {
             this.places = response.data.obj;
         }).catch(err => {
             console.log(err);
         });
-        axios.get("http://localhost:3000/people")
+        axios.get("https://docstory-jangelcepeda.b4a.run/people")
             .then(response => {
             this.people = response.data.obj;
         }).catch(err => {
             console.log(err);
         });
-        axios.get("http://localhost:3000/documents")
+        axios.get("https://docstory-jangelcepeda.b4a.run/documents")
             .then(response => {
             this.documents = response.data.obj;
         }).catch(err => {

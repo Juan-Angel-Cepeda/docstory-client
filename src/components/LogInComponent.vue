@@ -29,7 +29,7 @@
    },
    methods:{
     login(){
-        axios.post('http://localhost:3000/login',{
+        axios.post('https://docstory-jangelcepeda.b4a.run/login',{
             email:this.email,
             password:this.password
         }).then(res => {

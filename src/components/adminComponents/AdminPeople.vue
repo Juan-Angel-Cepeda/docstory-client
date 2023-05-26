@@ -141,7 +141,7 @@
     },
     methods: {
       createPerson() {
-        axios.post('http://localhost:3000/admin/people', this.person)
+        axios.post('https://docstory-jangelcepeda.b4a.run/admin/people', this.person)
           .then(response => {
             console.log(response);
           })
@@ -150,7 +150,7 @@
           });
       },
       deletePerson(){
-        axios.delete(`http://localhost:3000/admin/people/${this.selectedPerson}`)
+        axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/people/${this.selectedPerson}`)
              .then(response => {
                 console.log(response)
              }).catch(err => {
@@ -176,14 +176,14 @@
 
     },
     created(){
-      axios.get('http://localhost:3000/places')
+      axios.get('https://docstory-jangelcepeda.b4a.run/places')
             .then(response => {
               this.places = response.data.obj;
             }).catch(err => {
               console.log(err);
             });
 
-      axios.get('http://localhost:3000/people')
+      axios.get('https://docstory-jangelcepeda.b4a.run/people')
             .then(response => {
               this.people = response.data.obj;
             }).catch(err => {

@@ -19,7 +19,7 @@
     },
     async created() {
       try {
-        const response = await axios.get('http://localhost:3000/people');
+        const response = await axios.get('https://docstory-jangelcepeda.b4a.run/people');
         this.people = response.data.obj;
       } catch (error) {
         console.error(error);

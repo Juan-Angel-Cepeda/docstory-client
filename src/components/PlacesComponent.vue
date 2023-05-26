@@ -19,7 +19,7 @@
     },
     async created() {
       try {
-        const response = await axios.get('http://localhost:3000/places');
+        const response = await axios.get('https://docstory-jangelcepeda.b4a.run/places');
         this.places = response.data.obj;
       } catch (error) {
         console.error(error);

@@ -93,7 +93,7 @@
     },
     methods: {
       createPlace() {
-        axios.post('http://localhost:3000/admin/places', this.place)
+        axios.post('https://docstory-jangelcepeda.b4a.run/admin/places', this.place)
           .then(response => {
             console.log(response);
             // puedes agregar aquí cualquier acción adicional, como redirigir al usuario o mostrar un mensaje de éxito
@@ -104,7 +104,7 @@
           });
       },
       deletePlace(){
-        axios.delete(`http://localhost:3000/admin/places/${this.selectedPlace}`)
+        axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/places/${this.selectedPlace}`)
              .then(response => {
                 console.log(response)
              }).catch(err => {
@@ -113,7 +113,7 @@
       },
     },
     created(){
-        axios.get('http://localhost:3000/places')
+        axios.get('https://docstory-jangelcepeda.b4a.run/places')
              .then(response => {
                 this.places = response.data.obj;
              }).catch(err => {
@@ -126,6 +126,4 @@
 .fixed{
     display: fixed;
 }
-
-
 </style>

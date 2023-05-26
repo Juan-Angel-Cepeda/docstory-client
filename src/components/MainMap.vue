@@ -33,7 +33,7 @@
   });
 
   try {
-    let response = await axios.get('http://localhost:3000/places');
+    let response = await axios.get('https://docstory-jangelcepeda.b4a.run/places');
     this.places = response.data.obj;
   } catch (error) {
     console.log(error);
