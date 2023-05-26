@@ -1,4 +1,5 @@
 <template>
+    <NavBarComponent></NavBarComponent>
     <div class="document-container">
       <DocumentCard v-for="document in documents" :key="document._id" :document="document" />
     </div>
@@ -7,6 +8,7 @@
 <script>
   import axios from 'axios';
   import DocumentCard from './DocumentCard.vue';
+import NavBarComponent from './NavBarComponent.vue';
   
   export default {
     data() {
@@ -15,8 +17,9 @@
       };
     },
     components: {
-      DocumentCard,
-    },
+    DocumentCard,
+    NavBarComponent
+},
     async created() {
       try {
         const response = await axios.get('https://docstory-jangelcepeda.b4a.run/documents');

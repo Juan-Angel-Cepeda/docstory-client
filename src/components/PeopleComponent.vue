@@ -1,4 +1,5 @@
 <template>
+    <NavBarComponent></NavBarComponent>
     <div class="people-container">
       <PersonCard v-for="person in people" :key="person._id" :person="person" />
     </div>
@@ -7,6 +8,7 @@
 <script>
   import axios from 'axios';
   import PersonCard from './PersonCard.vue';
+import NavBarComponent from './NavBarComponent.vue';
   
   export default {
     data() {
@@ -15,8 +17,9 @@
       };
     },
     components: {
-      PersonCard,
-    },
+    PersonCard,
+    NavBarComponent
+},
     async created() {
       try {
         const response = await axios.get('https://docstory-jangelcepeda.b4a.run/people');

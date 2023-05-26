@@ -1,4 +1,5 @@
 <template>
+  <NavBarComponent></NavBarComponent>
   <div class="body">
     <form class="form" @submit.prevent="login">
       <p class="form-title">Sign in to your account</p>
@@ -18,30 +19,32 @@
 
 <script>
  import axios from 'axios'
+import NavBarComponent from './NavBarComponent.vue';
  export default {
-   name:'LogInComponent',
-   data(){
-    return {
-        email:"",
-        password:"",
-        msg:null
-    };
-   },
-   methods:{
-    login(){
-        axios.post('https://docstory-jangelcepeda.b4a.run/login',{
-            email:this.email,
-            password:this.password
-        }).then(res => {
-            console.log(res);
-            this.$router.push('/admin/documents');
-        }).catch(err => {
-            this.msg = err.response.data.message;
-            console.log(err);
-        })
-    }
-   }
-  };
+    name: "LogInComponent",
+    data() {
+        return {
+            email: "",
+            password: "",
+            msg: null
+        };
+    },
+    methods: {
+        login() {
+            axios.post("https://docstory-jangelcepeda.b4a.run/login", {
+                email: this.email,
+                password: this.password
+            }).then(res => {
+                console.log(res);
+                this.$router.push("/admin/documents");
+            }).catch(err => {
+                this.msg = err.response.data.message;
+                console.log(err);
+            });
+        }
+    },
+    components: { NavBarComponent }
+};
 </script>
 
 <style scoped>

@@ -1,4 +1,5 @@
 <template>
+  <NavBarComponent></NavBarComponent>
 
     <div v-if="document && document.obj" class="card-container">
       <div class="container">
@@ -78,81 +79,78 @@
   import { ref, onMounted, onBeforeUnmount, nextTick} from 'vue';
   import { getDocumentById } from '../services/apiService';
   import L from 'leaflet';
+import NavBarComponent from './NavBarComponent.vue';
   
   export default {
-    props: ['id'],
+    props: ["id"],
     setup(props) {
-      const document = ref(null);
-      const currentPhotoIndex = ref(0);
-      let mapInstance = null;
-  
-      const formatDate = (dateString) => {
-        const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
-        return new Date(dateString).toLocaleDateString(undefined, options);
-      }
-  
-      const fetchDocument = async () => {
-        console.log('Fetching document...');
-  
-        try {
-          document.value = await getDocumentById(props.id);
-          console.log('Fetched document:', document.value);
-        } catch (error) {
-          console.error('Failed to fetch document:', error);
-        }
-      }
-  
-      onMounted(async ()=>{
-        await fetchDocument();
-        await nextTick();
-        console.log(document.value);
-        if(document.value.obj._place) {
-            mapInstance = L.map('leaflet-map').setView([
-            document.value.obj._place._latitud,
-            document.value.obj._place._longitud
-            ],13);
-    
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-            maxZoom: 18,
-            }).addTo(mapInstance);
-            let customIcon = L.icon({
-            iconUrl:`/images/ubicacion.png`,
-            iconSize: [30, 30], 
-            iconAnchor: [20, 90],
-            popupAnchor: [-3, -76]
-          });
-          L.marker([document.value.obj._place._latitud, document.value.obj._place._longitud],{icon:customIcon}).addTo(mapInstance);
-        } else {
-        console.error("Document does not have _place defined");
-        }
-    });
-
-    onBeforeUnmount(() => {
-      if (mapInstance) {
-        mapInstance.remove();
-      }
+        const document = ref(null);
+        const currentPhotoIndex = ref(0);
+        let mapInstance = null;
+        const formatDate = (dateString) => {
+            const options = { year: "numeric", month: "numeric", day: "numeric" };
+            return new Date(dateString).toLocaleDateString(undefined, options);
+        };
+        const fetchDocument = async () => {
+            console.log("Fetching document...");
+            try {
+                document.value = await getDocumentById(props.id);
+                console.log("Fetched document:", document.value);
+            }
+            catch (error) {
+                console.error("Failed to fetch document:", error);
+            }
+        };
+        onMounted(async () => {
+            await fetchDocument();
+            await nextTick();
+            console.log(document.value);
+            if (document.value.obj._place) {
+                mapInstance = L.map("leaflet-map").setView([
+                    document.value.obj._place._latitud,
+                    document.value.obj._place._longitud
+                ], 13);
+                L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+                    attribution: "Map data © <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors",
+                    maxZoom: 18,
+                }).addTo(mapInstance);
+                let customIcon = L.icon({
+                    iconUrl: `/images/ubicacion.png`,
+                    iconSize: [30, 30],
+                    iconAnchor: [20, 90],
+                    popupAnchor: [-3, -76]
+                });
+                L.marker([document.value.obj._place._latitud, document.value.obj._place._longitud], { icon: customIcon }).addTo(mapInstance);
+            }
+            else {
+                console.error("Document does not have _place defined");
+            }
         });
-  
-      const nextPhoto = () => {
-        if (currentPhotoIndex.value < document.value.obj._photos.length - 1) {
-          currentPhotoIndex.value++;
-        } else {
-          currentPhotoIndex.value = 0;
-        }
-      }
-  
-      const prevPhoto = () => {
-        if (currentPhotoIndex.value > 0) {
-          currentPhotoIndex.value--;
-        } else {
-          currentPhotoIndex.value = document.value.obj._photos.length - 1;
-        }
-      }
-  
-      return { document, formatDate, currentPhotoIndex, nextPhoto, prevPhoto };
-    }
-  }
+        onBeforeUnmount(() => {
+            if (mapInstance) {
+                mapInstance.remove();
+            }
+        });
+        const nextPhoto = () => {
+            if (currentPhotoIndex.value < document.value.obj._photos.length - 1) {
+                currentPhotoIndex.value++;
+            }
+            else {
+                currentPhotoIndex.value = 0;
+            }
+        };
+        const prevPhoto = () => {
+            if (currentPhotoIndex.value > 0) {
+                currentPhotoIndex.value--;
+            }
+            else {
+                currentPhotoIndex.value = document.value.obj._photos.length - 1;
+            }
+        };
+        return { document, formatDate, currentPhotoIndex, nextPhoto, prevPhoto };
+    },
+    components: { NavBarComponent }
+}
   </script>
 
 <style scoped>

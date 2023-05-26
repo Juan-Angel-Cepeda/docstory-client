@@ -1,5 +1,5 @@
 <template>
-    <AdminSidebar></AdminSidebar>
+    <AdminNavbar></AdminNavbar>
     <div class="container mt-5">
       <h2>Create a new Document</h2>
       <form @submit.prevent="createDocument" class="row g-3">
@@ -100,9 +100,8 @@
   </template>
   
   <script>
-    import AdminSidebar from './AdminSidebar.vue';
+    import AdminNavbar from './AdminNavbar.vue';
     import axios from 'axios';
-    //import AdminSidbar from './AdminSidebar.vue'
     export default {
     data() {
         return {
@@ -161,7 +160,7 @@
             console.log(err);
         });
     },
-    components: { AdminSidebar }
+    components: { AdminNavbar }
 }
 </script>
 <style scoped>

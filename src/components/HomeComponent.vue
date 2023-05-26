@@ -1,4 +1,5 @@
 <template>
+  <NavBarComponent></NavBarComponent>
     <div class="hero">
       <div class="hero-background" :style="{ backgroundImage: `url(/savoy-hotel.jpg)` }">
         <div class="hero-content">
@@ -11,12 +12,14 @@
 
 <script>
 import AboutSection from './AboutSection.vue';
+import NavBarComponent from './NavBarComponent.vue';
 
 export default {
   name: 'HomeComponent',
   components: {
-    AboutSection
-  },
+    AboutSection,
+    NavBarComponent
+},
 };
 </script>
 

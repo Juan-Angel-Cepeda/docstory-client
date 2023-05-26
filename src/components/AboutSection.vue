@@ -1,13 +1,17 @@
 <template>
+    <NavBarComponent></NavBarComponent>
     <section class="about">
       <p>Watts Coulson Document colection</p>
     </section>
 </template>
   
 <script>
+import NavBarComponent from './NavBarComponent.vue';
+
   export default {
-    name: 'AboutSection',
-  };
+    name: "AboutSection",
+    components: NavBarComponent,
+};
 </script>
   
 <style scoped>

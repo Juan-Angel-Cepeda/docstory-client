@@ -1,5 +1,5 @@
 <template>
-  <AdminSidbar class="fixed"></AdminSidbar>
+  <AdminNavbar></AdminNavbar>
   <div class="container mt-5" style="margin-left: 15%;">
     <h2>Create a new person</h2>
     <form @submit.prevent="createPerson" class="row g-3">
@@ -111,12 +111,12 @@
 
 <script>
   import axios from 'axios';
-  import AdminSidbar from './AdminSidebar.vue'
+  import AdminNavbar from './AdminNavbar.vue';
   
   export default {
     components:{
-            AdminSidbar
-    },
+    AdminNavbar
+},
     data() {
       return {
         showModal:false,
