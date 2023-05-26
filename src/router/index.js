@@ -6,7 +6,6 @@ import PeopleComponent from '../components/PeopleComponent.vue'
 import DocumentsComponent from '../components/DocumentsComponent.vue'
 import SeeDocument from '../components/SeeDocument.vue'
 import LogInComponent from '../components/LogInComponent.vue'
-import AdminPanel from '../components/adminComponents/AdminPanel.vue'
 import AdminDocuments from '../components/adminComponents/AdminDocuments.vue'
 import AdminPlaces from '../components/adminComponents/AdminPlaces.vue'
 import AdminPeople from '../components/adminComponents/AdminPeople.vue'
@@ -20,7 +19,6 @@ const routes = [
   { path: '/documents',component:DocumentsComponent},
   { path: '/document/:id',name:'document',component:SeeDocument,props:true},
   { path: '/login',component:LogInComponent},
-  { path: '/adminPanel',component:AdminPanel},
   { path: '/admin/documents',component:AdminDocuments},
   { path: '/admin/places', component:AdminPlaces},
   { path: '/admin/people', component:AdminPeople},

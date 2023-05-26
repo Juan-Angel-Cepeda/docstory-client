@@ -4,6 +4,8 @@
     <p>Born: {{ formatDate(person._date_of_birth) }}</p>
     <p>Birth Place: {{ person._birth_place._name }}, {{ person._birth_place._city }}, {{ person._birth_place._country }}</p>
     <p>Death Place: {{ person._death_place._name }}, {{ person._death_place._city }}, {{ person._death_place._country }}</p>
+    <p>Father: {{ person._father._name }} {{ person._father._lastName }}</p>
+    <p>Mother: {{ person._mother._name }} {{ person._mother._lastName }}</p>
     <div ref="mapContainer"></div>
   </div>
 </template>

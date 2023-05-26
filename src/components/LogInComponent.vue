@@ -34,7 +34,7 @@
             password:this.password
         }).then(res => {
             console.log(res);
-            this.$router.push('/adminPanel');
+            this.$router.push('/admin/documents');
         }).catch(err => {
             this.msg = err.response.data.message;
             console.log(err);
