@@ -73,25 +73,19 @@
           <input v-model="document.ubi" type="text" class="form-control" placeholder="ubi" required>
         </div>
         
-        <div class="col-6" v-for="(photo, index) in document.photos" :key="index">
-          <label class="form-label">Link to the Photo</label>
-          <input v-model="document.photos" type="text" class="form-control" placeholder="Link to the Photos" required>
+        <div class="col-6">
+          <label class="form-label">Context</label>
+          <textarea v-model="document.context" type="input" class="form-control" placeholder="Context" required></textarea>
         </div>
         
-        <div class="col-12">
-          <label class="form-label">Context</label>
+        <div class="col-12" v-for="(photo,index) in document.photos" :key="index">
+          <label class="form-label">Link to the photo</label>
           <input v-model="document.photos[index]" type="text" class="form-control" placeholder="Link to the Photos" required>
-          <button type="button" @click="addPhotoField">Add another photo</button>
         </div>
-        <div class="col-6">
-          <label class="form-label">Relations With Other Documents</label>
-          <select v-model="document.relations" class="form-control" multiple required>
-            <option disabled value="">Please select one</option>
-            <option v-for="document in documents" :key="document._id" :value="document._id">
-              {{ document._title }}
-            </option>
-          </select>
+        <div class="col-12">
+          <button type="button" @click="addPhotoField">Add photo</button>
         </div>
+
         <div class="col-12">
           <button type="submit" class="btn btn-primary">Create Document</button>
         </div>
@@ -163,6 +157,5 @@
     components: { AdminNavbar }
 }
 </script>
-<style scoped>
-
+  <style scoped>
 </style>

@@ -1,6 +1,5 @@
 <template>
   <NavBarComponent></NavBarComponent>
-
     <div v-if="document && document.obj" class="card-container">
       <div class="container">
         <div class="container-title">
@@ -79,7 +78,7 @@
   import { ref, onMounted, onBeforeUnmount, nextTick} from 'vue';
   import { getDocumentById } from '../services/apiService';
   import L from 'leaflet';
-import NavBarComponent from './NavBarComponent.vue';
+  import NavBarComponent from './NavBarComponent.vue';
   
   export default {
     props: ["id"],

@@ -1,6 +1,6 @@
 <template>
   <AdminNavbar></AdminNavbar>
-  <div class="container mt-5" style="margin-left: 15%;">
+  <div class="container mt-5">
     <h2>Create a new person</h2>
     <form @submit.prevent="createPerson" class="row g-3">
       <div class="col-6">
@@ -57,10 +57,6 @@
           </option>
         </select>
       </div>
-      <div class="col-6">
-        <label class="form-label">Children</label>
-        <button type="button" class="btn btn-primary" @click="showAddChildModal">Add Child</button>
-      </div>
       <div class="col-12">
         <button type="submit" class="btn btn-primary">Create Person</button>
       </div>
@@ -82,31 +78,6 @@
       </div>
     </form>
   </div>
-  <div class="b-modal" tabindex="-1" role="dialog" v-if="showModal">
-    <div class="b-modal-dialog" role="document">
-      <div class="b-modal-content">
-        <div class="b-modal-header">
-          <h5 class="b-modal-title">Add Child</h5>
-          <button type="button" class="close" @click="closeAddChildModal">
-            <span>&times;</span>
-          </button>
-        </div>
-        <div class="b-modal-body">
-          <select v-model="selectedChild" class="form-control" required>
-            <option disabled value="">Please select one</option>
-            <option v-for="person in people" :key="person._id" :value="person._id">
-              {{person._name}}
-              {{person._lastName}}
-            </option>
-          </select>
-        </div>
-        <div class="b-modal-footer">
-          <button type="button" class="btn btn-primary" @click="addChild">Add Child</button>
-          <button type="button" class="btn btn-secondary" @click="closeAddChildModal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
 <script>
@@ -119,8 +90,6 @@
 },
     data() {
       return {
-        showModal:false,
-        selectedChild:null,
         person: {
           name: '',
           lastName: '',

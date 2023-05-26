@@ -1,6 +1,6 @@
 <template>
     <AdminNavbar></AdminNavbar>
-    <div class="container mt-5" style="margin-left: 15%;">
+    <div class="container mt-5">
       <h2>Create a new place</h2>
       <form @submit.prevent="createPlace" class="row g-3">
         <div class="col-6">
