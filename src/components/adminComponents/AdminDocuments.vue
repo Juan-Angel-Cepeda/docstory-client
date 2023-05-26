@@ -139,7 +139,7 @@
     },
     methods: {
         async createDocument() {
-          this.document.photos = this.document.photos.map(this.formatGoogleDriveLink);
+            this.document.photos = this.document.photos.map(this.formatGoogleDriveLink);
             axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document)
                 .then(response => {
                 Swal.fire({
@@ -195,12 +195,6 @@
         axios.get("https://docstory-jangelcepeda.b4a.run/people")
             .then(response => {
             this.people = response.data.obj;
-        }).catch(err => {
-            console.log(err);
-        });
-        axios.get("https://docstory-jangelcepeda.b4a.run/documents")
-            .then(response => {
-            this.documents = response.data.obj;
         }).catch(err => {
             console.log(err);
         });

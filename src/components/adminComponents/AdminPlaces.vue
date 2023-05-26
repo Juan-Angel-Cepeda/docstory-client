@@ -33,7 +33,7 @@
         </div>
         <div class="col-6">
           <label class="form-label">ZIP</label>
-          <input v-model="place.zip" type="number" class="form-control" placeholder="ZIP" required>
+          <input v-model="place.zip" type="text" class="form-control" placeholder="ZIP" required>
         </div>
         <div class="col-6">
           <label class="form-label">Latitude</label>
