@@ -139,6 +139,7 @@
     },
     methods: {
         async createDocument() {
+          this.document.photos = this.document.photos.map(this.formatGoogleDriveLink);
             axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document)
                 .then(response => {
                 Swal.fire({
@@ -174,6 +175,14 @@
              }).catch(err => {
                 console.log(err)
              })
+      },
+      formatGoogleDriveLink(link) {
+        if (link.includes('drive.google.com/file/d/')) {
+            let fileId = link.split('file/d/')[1].split('/view')[0];
+            return `https://drive.google.com/uc?id=${fileId}`;
+        } else {
+            return link;
+        }
       }
     },
     created() {
