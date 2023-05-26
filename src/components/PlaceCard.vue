@@ -20,8 +20,14 @@
         attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
         maxZoom: 18,
       }).addTo(map);
+      let customIcon = L.icon({
+            iconUrl:`/images/ubicacion.png`,
+            iconSize: [30, 30], // Especifica el tamaño del ícono aquí. Los valores son [ancho, alto]
+            iconAnchor: [20, 90], // Especifica el punto de anclaje del ícono. Los valores son [izquierda, arriba]
+            popupAnchor: [-3, -76] 
+        })
   
-      L.marker([this.place._latitud, this.place._longitud]).addTo(map);
+      L.marker([this.place._latitud, this.place._longitud],{icon:customIcon}).addTo(map);
     },
   };
 </script>

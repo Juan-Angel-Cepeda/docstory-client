@@ -10,6 +10,8 @@
               <p class="card-text">{{ document.obj._description }}</p>
               <p>Format: {{ document.obj._format }}</p>
               <p>Author: {{ document.obj._author }}</p>
+              <p>Sender: {{ document.obj._sender._name }} {{ document.obj._sender._lastName }}</p>
+              <p>Reciver: {{ document.obj._reciver._name }} {{ document.obj._reciver._lastName }}</p>
               <p>Context: {{ document.obj._context }}</p>
               <p>Collection: {{ document.obj._colection }}</p>
               <p>Location: {{ document.obj._ubi }}</p>

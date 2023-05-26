@@ -172,7 +172,7 @@
         this.selectedChild = null;
       }
       this.closeAddChildModal();
-  },
+      },
 
     },
     created(){
