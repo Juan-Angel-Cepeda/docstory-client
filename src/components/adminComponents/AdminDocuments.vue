@@ -112,6 +112,7 @@
     import AdminNavbar from './AdminNavbar.vue';
     import axios from 'axios';
     import Swal from 'sweetalert2';
+    let token = localStorage.getItem('jwt');
     export default {
     data() {
         return {
@@ -140,7 +141,11 @@
     methods: {
         async createDocument() {
             this.document.photos = this.document.photos.map(this.formatGoogleDriveLink);
-            axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document)
+            axios.post("https://docstory-jangelcepeda.b4a.run/admin/documents", this.document,{
+              headers:{
+                Authorization:'Bearer' + token
+              }
+            })
                 .then(response => {
                 Swal.fire({
                   title: 'Creado',
@@ -157,7 +162,11 @@
             this.document.photos.push("");
         },
         deleteDocument(){
-        axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/documents/${this.selectedDocument}`)
+        axios.delete(`https://docstory-jangelcepeda.b4a.run/admin/documents/${this.selectedDocument}`,{
+          headers:{
+            Authorization:'Bearer'+token
+          }
+        })
              .then(response => {
                 console.log(response);
                 Swal.fire({

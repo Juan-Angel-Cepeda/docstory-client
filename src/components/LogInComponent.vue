@@ -19,14 +19,15 @@
 
 <script>
  import axios from 'axios'
-import NavBarComponent from './NavBarComponent.vue';
+ import NavBarComponent from './NavBarComponent.vue';
+ import Swal from 'sweetalert2';
  export default {
     name: "LogInComponent",
     data() {
         return {
             email: "",
             password: "",
-            msg: null
+            msg: null,
         };
     },
     methods: {
@@ -36,8 +37,19 @@ import NavBarComponent from './NavBarComponent.vue';
                 password: this.password
             }).then(res => {
                 console.log(res);
+                localStorage.setItem('jwt',res.data.obj)
+                Swal.fire({
+                  title:'Log In',
+                  text:'Success',
+                  icon:'success'
+                });
                 this.$router.push("/admin/documents");
             }).catch(err => {
+                Swal.fire({
+                  icon:'info',
+                  title:'Password or user incorrect',
+                  text:'Incorrect credentials'
+                })
                 this.msg = err.response.data.message;
                 console.log(err);
             });
