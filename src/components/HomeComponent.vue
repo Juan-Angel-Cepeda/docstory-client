@@ -43,6 +43,6 @@ html, body {
   color:#dd5100;
   font-family: 'Lobster', cursive;
   margin-bottom: 95%; /* ajusta este valor para mover el texto hacia arriba */
-  font-size:  85px;
+  font-size:  100px;
 }
 </style>
