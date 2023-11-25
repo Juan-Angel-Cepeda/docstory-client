@@ -56,15 +56,16 @@ export default {
 
 <style scoped>
  @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 .person-card {
-  font-family: 'Lobster', cursive;
+  font-family: 'Montserrat';
   width: 300px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
   padding: 10px;
   margin: 10px;
-  background-color: orange;
+  background-color: rgb(255, 255, 255);
 }
 div[ref="mapContainer"] {
   height: 200px;

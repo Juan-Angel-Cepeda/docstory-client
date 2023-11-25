@@ -1,10 +1,10 @@
 <template>
-    <div class="place-card">
-      <h2>{{ place._name }}</h2>
-      <p>{{ place._description }}</p>
-      <p>{{ place._street }}, {{ place._city }}, {{ place._country }}</p>
-      <div id="mapid" style="height: 400px;"></div>
-    </div>
+  <div class="place-card">
+    <h2>{{ place._name }}</h2>
+    <p>{{ place._description }}</p>
+    <p>{{ place._street }}, {{ place._city }}, {{ place._country }}</p>
+    <div id="mapid" style="height: 400px;"></div>
+  </div>
   </template>
   
   <script>
@@ -34,14 +34,16 @@
   
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .place-card {
-    font-family: 'Lobster', cursive;
+    font-family: 'Montserrat';
     width: 300px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(170, 165, 185);
     border-radius: 10px;
-    box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 6px rgba(255, 255, 255, 0.1);
     padding: 10px;
     margin: 10px;
-    background-color: orange;
+    background-color: rgb(255, 255, 255)
   }
+  
 </style>

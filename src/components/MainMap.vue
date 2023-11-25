@@ -55,17 +55,18 @@
 <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
   @import url('../../node_modules/leaflet/dist/leaflet.css');  
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .map-page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: orange;
+    background-color: rgb(255, 255, 255);
     height: 100vh;
   }
   
   h1 {
     color: black;
-    font-family: 'Lobster', cursive;
+    font-family: 'Montserrat';
   }
   
   #mapid {

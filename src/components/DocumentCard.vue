@@ -29,6 +29,8 @@ export default {
 <style scoped>
 
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 .document-card {
   width: 300px;
@@ -37,14 +39,14 @@ export default {
   box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
   padding: 10px;
   margin: 10px;
-  background-color: orange;
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
 .document-info {
-  font-family: 'Lobster', cursive;
+  font-family: 'Montserrat';
 }
 
 .document-image {
