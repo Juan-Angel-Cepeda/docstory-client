@@ -33,7 +33,9 @@ import NavBarComponent from './NavBarComponent.vue';
 </script>
   
 <style scoped>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .document-container {
+    font-family: 'Montserrat';
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

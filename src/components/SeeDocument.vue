@@ -125,7 +125,7 @@
   </script>
 
 <style scoped>
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .container {
     padding: 20px;
   }
@@ -136,8 +136,9 @@
   }
 
   .container-info {
-    margin-left: 15px;
-    margin-top: 20px;
+    margin-left: 20px;
+    margin-top: 0px;
+    font-size: 6px; /* Puedes ajustar este valor según sea necesario */
   }
 
   .container-btns-carousel{
@@ -148,7 +149,7 @@
   .container-btns-carousel button{
     background-color: transparent;
     border: none;
-    font-size: 25px;
+    font-size: 20px;
     transition: 0.5s;
   }
 
@@ -163,16 +164,16 @@
   }
   .title{
     text-align: center;
-    font-family: 'Lobster', cursive;
+    font-family: 'Montserrat';
   }
   p {
-    font-family: 'Lobster', cursive;
+    font-family: 'Montserrat';
   }
   .photo {
     align-self: flex-start;
   }
   img {
-  width: 400px;  /* Ajusta este valor para cambiar el tamaño de la imagen */
+  width: 360px;  /* Ajusta este valor para cambiar el tamaño de la imagen */
   height: auto;  /* Asegura que la altura cambie proporcionalmente con el ancho */
   object-fit: contain;  /* Asegura que la imagen se ajuste a sus dimensiones sin recortar o estirar */
   }
