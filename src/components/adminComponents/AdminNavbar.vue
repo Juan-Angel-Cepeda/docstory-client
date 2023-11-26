@@ -20,14 +20,14 @@
   
   <style scoped>
   @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-  
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
   .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   color: #dd5100; /* Color del texto */
-  padding: 35px;
+  padding: 12px;
   width: 100%;
   }
   
@@ -40,14 +40,15 @@
   }
   
   .navbar-button {
-    background-color: rgb(221, 81, 0); /* color de fondo naranja */
+    background-color: rgba(255, 255, 255, 0.274); /* color de fondo naranja */
     border: none;
     color: rgb(0, 0, 0); /* texto negro */
     cursor: pointer;
     padding: 10px 20px; /* esto determina el tamaño del botón, ajústalo a tu gusto */
-    border-radius: 30px; /* esto hace que el botón sea redondo, ajústalo a tu gusto */
+    border-radius: 8px; /* esto hace que el botón sea redondo, ajústalo a tu gusto */
     margin-left: 10px; /* espacio a la izquierda del botón */
-    font-family: 'lobster';
+    font-family: 'montserrat';
+    text-decoration: none; /* quita el subrayado del texto */
   }
   .navbar-button.login{
     margin-left: auto;

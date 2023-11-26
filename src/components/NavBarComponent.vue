@@ -6,6 +6,7 @@
       <li><router-link to="/map" class="navbar-button">Map</router-link></li>
       <li><router-link to='/places' class="navbar-button">Places</router-link></li>
       <li><router-link to='/people' class='navbar-button'>People</router-link></li>
+      <li><router-link to='/timelines' class='navbar-button'>Time Line</router-link></li>
       
     </ul>
     <li><router-link to='/login' class='navbar-button'>Log In</router-link></li>
