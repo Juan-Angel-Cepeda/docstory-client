@@ -1,5 +1,5 @@
 <template>
-  <router-link :to = "`/document/${document._id}`">
+  <router-link :to = "`/document/${document._id}`" class="router-link">
   <div class="document-card">
     <div class="document-info">
       <h2>{{ document._title }}</h2>
@@ -33,12 +33,12 @@ export default {
 
 
 .document-card {
-  width: 300px;
+  width: 400px;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
   padding: 10px;
-  margin: 10px;
+  margin: 15px;
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -47,6 +47,8 @@ export default {
 
 .document-info {
   font-family: 'Montserrat';
+  text-decoration: none;
+  color: black;
 }
 
 .document-image {
@@ -58,5 +60,20 @@ export default {
   height: 100%;
   width: 100%;
   object-fit: cover;
+}
+
+.router-link {
+  text-decoration: none;
+  color: black;
+}
+
+.router-link:hover {
+  text-decoration: none;
+  color: black;
+}
+
+.router-link:active {
+  text-decoration: none;
+  color: black;
 }
 </style>
